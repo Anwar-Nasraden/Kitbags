@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Payment</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="@routes.Assets.versioned("stylesheets/payment.css")" rel="stylesheet">
+    </head>
+    <body>
+
+<br>
+        <br>
+        <br>
+        <div class="col-sm-3">
+            <h3>Card details</h3>
+            <form>
+            <div class="form-group">
+                <label for="Cardholder's name">Cardholder's name:</label>
+                <input type="text" class="form-control" id="email">
+            </div>
+
+                <div class="form-group">
+                    <label for="sel1">Selselect one:</label>
+                    <select class="form-control" id="sel1">
+                        <option>Visa</option>
+                        <option>Master Card</option>
+                        <option>Prepay</option>
+                        <option>Amex</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="text">Card Number:</label>
+                    <input type="email" class="form-control" placeholder="enter 16 digits of your card number">
+                </div>
+
+                <div class="date">
+                    <div class="form-group">
+                        <label for="sel1">Select Expiry date</label>
+                        <select class="form-control" id="sel1">
+                            <option>01</option>
+                            <option>02</option>
+                            <option>03</option>
+                            <option>04</option>
+                            <option>05</option>
+                            <option>06</option>
+                            <option>07</option>
+                            <option>08</option>
+                            <option>09</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                        </select>
+
+                            <label for="sel1">Select Expiry Year</label>
+                            <select class="form-control" id="sel1">
+                                <option>2017</option>
+                                <option>2018</option>
+                                <option>2019</option>
+                                <option>2020</option>
+                                <option>2021</option>
+                                <option>2022</option>
+                                <option>2023</option>
+                            </select>
+
+
+                    </div>
+
+                </div>
+
+
+            <div class="form-group">
+                <label for="pwd">CVV</label>
+                <input type="password" class="form-control" placeholder="3 digits at the back of your card">
+            </div>
+
+
+
+                <div class="col-md-6">
+                    <p class="text-right">
+                        <a href="@routes.ShoppingCtrl.emptyBasket()" class="btn btn-danger btn-sm" onclick="return CancelOrder();">
+                            Cancel Order</a>
+                    </p>
+                </div>
+
+            <div class="col-md-6">
+                <p class="text-right">
+                    <a href="@routes.ShoppingCtrl.placeOrder()" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-euro"></span> Pay Now</a>
+                </p>
+            </div>
+        </form>
+</div>
+
+        <style>
+        .col-sm-3 {
+
+            margin-left: 30%;
+
+        }
+        </style>
+
+        <script>
+	// JavaScript function returns true if user clicks yes, otherwise, false
+    function CancelOrder() {
+        return confirm('Click ok if you wish to cance your order?');
+    }
+</script>
+
+    </body>
+    </html>

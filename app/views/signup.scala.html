@@ -1,0 +1,154 @@
+@(addUsersForm: Form[models.users.User])
+@import helper._
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Register</title>
+
+      <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+      <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+    integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+      <!-- Custom CSS -->
+    <link href="@routes.Assets.versioned("stylesheets/shop-homepage.css")" rel="stylesheet">
+
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+      <!-- Site header and navigation -->
+    <header class="top" role="header">
+        <!-- Navigation -->
+       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+            <div class="container">
+
+                <div class="col-sm-5 col-md-5 pull-right">
+                  
+
+                    <form action="@routes.ProductCtrl.listProducts(0, "")" method="GET">
+                        <div class="input-group">
+                            <input type="search" id="searchbox" name="filter" value="" class="form-control" placeholder="Search by name">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit" id="searchsubmit" value="" ><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="@routes.HomeController.home()">Kitbags</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+
+                        <li <a href="@routes.HomeController.boots()">BOOTS</a></li>
+
+                         <li <a href="@routes.HomeController.kits()">KITS</a></li>
+
+                        <li <a href="@routes.HomeController.clothes()">CLOTHING</a></li>
+
+                        <li <a href="@routes.HomeController.footballs()">FOOTBALLS</a></li>
+
+                        <li <a href="@routes.HomeController.training()">TRAINING</a></li>
+
+                        <li <a href="@routes.HomeController.accessories()">ACCESSORIES</a></li>
+
+                                            <!-- Login/ logout Link - check if user logged in -->
+
+
+
+
+                        
+
+                       
+
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+    </header>
+
+
+
+
+
+    @if(flash.containsKey("success")) {
+      <div class="alert alert-success">
+      @flash.get("success")
+      </div>
+    }
+    <div class="col-sm-3">
+      <h3>Signup</h3>
+
+      @form(action = routes.HomeController.signupSubmit(), 'class -> "form-horizontal", 'role ->"form") {
+
+        @inputText(addUsersForm("name"), '_label -> "",'class -> "form-control input-xs", 'placeholder -> "Name")
+        @inputText(addUsersForm("email"), '_label -> "", 'type -> "email", 'class -> "form-control input-xs", 'placeholder -> "Email")
+        @inputText(addUsersForm("address"), '_label -> "",'class -> "form-control input-xs", 'placeholder -> "Address")
+        @inputText(addUsersForm("password"), '_label -> "", 'type -> "password", 'class -> "form-control input-xs", 'placeholder -> "Password")
+
+
+        <div class="actions">
+          <input type="submit" value=" Register " class="btn btn-primary">
+
+            <button class="btn btn-warning"> Cancel </button>
+          </a>
+        </div>
+
+        <br>
+        <br>
+        <div class="col-lg-12">
+          <footer class="container-default">
+          </footer>
+        </div>
+      }
+      <style>
+        .col-sm-3 {
+
+            margin-left: 30%;
+
+        }
+      </style>
+
+    </div>
+
+  </body>
+    <!-- Load JavaScript libs last -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+</html>

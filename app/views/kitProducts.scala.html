@@ -1,0 +1,113 @@
+@import models.products.Category
+@import models.products.Product
+@import models.users.User
+@(env: play.api.Environment, categories: List[Category], products: List[Product], catId: Long, filter: String, user: User)
+
+
+<!-- Pass page title and user on to main -->
+
+@main("Products Page", user) {
+
+    <div class="break">
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <div class="container">
+
+            <h3>Search results for  "@filter" </h3>
+
+
+
+        <style>
+            h3{
+                text-align: center;
+            }
+        </style>
+
+        <body>
+
+
+
+
+
+            <style>
+            form {
+                margin-bottom: 1em;
+            }
+            </style>
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="list-group">
+                            <!-- Start of For loop - For each c in categories add a link -->
+                        <a href="@routes.ProductCtrl.products(0, filter)" class="list-group-item">All Categories</a>
+
+                        @for(c <- categories) {
+
+                            <a href="@routes.ProductCtrl.products(c.getId, filter)" class="list-group-item">@c.getName</a>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    @if(flash.containsKey("success")) {
+                        <div class="alert alert-success">
+                        @flash.get("success")
+                        </div>
+                    }
+
+                        <!-- Search Form -->
+
+
+                    <table class="table table-bordered table-hover table-condensed">
+                        <thead>
+                                <!-- The header row-->
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Stock</th>
+                                <th>Price</th>
+                                <th>Buy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <!-- Start of For loop - For each p in products add a row -->
+                            @for(p <- products) {
+                                <tr>
+                                        <!-- Display each product field value in a column -->
+                                    @if(env.resource("public/images/productImages/thumbnails/" + p.getId + ".jpg").isDefined) {
+                                        <td><img src="/assets/images/productImages/thumbnails/@(p.getId).jpg"/></td>
+                                    } else {
+                                        <td><img src="/assets/images/productImages/thumbnails/noImage.png"/></td>
+                                    }
+                                    <td>@p.getName</td>
+                                    <td>@p.getDescription</td>
+                                    <td>@p.getStock</td>
+                                    <td>&euro; @("%.2f".format(p.getPrice))</td>
+                                    @if(user != null) {
+                                        <td><a href="@routes.ShoppingCtrl.addToBasket(p.getId)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span>iasdhkashdhsa</a></td>
+                                    } else {
+                                        <td><a href="@controllers.security.routes.LoginCtrl.login()" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span></a></td>
+                                    }
+
+                                </tr>
+                            } <!-- End of For loop -->
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            }
+    <!-- Bootstrap Core JavaScript -->
+<script src="@routes.Assets.versioned("javascripts/bootsrap.js")" type="text/javascript"></script>
+<script src="@routes.Assets.versioned("javascripts/bootsrap.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.versioned("javascripts/contact_me.js")" type="text/javascript"></script>
+<script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+<script src="@routes.Assets.versioned("javascripts/jqBootstrapValidation.js")" type="text/javascript"></script>
+<script src="@routes.Assets.versioned("javascripts/jquery.js")" type="text/javascript"></script>
+    <!-- Script to Activate the Carousel -->

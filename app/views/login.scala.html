@@ -1,0 +1,45 @@
+@(form: Form[models.users.Login], user: models.users.User)
+<link href="@routes.Assets.versioned("stylesheets/login.css")" rel="stylesheet">
+<div class="break">
+    <br>
+</div>
+@main("Login Required", user) {
+    <div class="container">
+<div class="col-xs-4">
+  <h3>Sign in</h3>
+	<!-- Display login errors if they exist -->
+	@if(form.hasGlobalErrors) {
+		  <p class="alert alert-warning">
+		      @form.globalError.message
+		  </p>
+	}
+    @if(flash.containsKey("error")) {
+		  <div class="alert alert-warning">
+		      @flash.get("loginRequired")
+		  </div>
+	}
+	<!-- The login form -->
+
+</div>
+    </div>
+
+    @helper.form(action = controllers.security.routes.LoginCtrl.loginSubmit()) {
+        <form id="signin" class="navbar-form navbar-right" role="form">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input id="email" type="email" class="form-control" name="email" value="@form("email").value" placeholder="Email Address">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password">
+        </div>
+
+        <button type="submit" value="Sign In" class="btn btn-primary">Login</button>
+    </form>
+    }
+    <div class="signUP">
+   <h5> <a href="@controllers.routes.HomeController.Register()"><br>Click here to sign up</a> </h5>
+    </div>
+
+}

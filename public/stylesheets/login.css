@@ -1,0 +1,31 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.form-group{
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+}
+
+.container {
+    position: relative;
+
+
+    margin-top: 1em;
+}
+
+.input-group{
+    float: left;
+    width: 30%;
+
+
+}
+
+button{
+    float: left;
+}
+
+h5{
+   margin-left: 25%;
+    margin-right: 50%;
+    font-style: italic;
+}
